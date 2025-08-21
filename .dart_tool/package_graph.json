@@ -1,0 +1,14 @@
+{
+  "roots": [
+    "diary"
+  ],
+  "packages": [
+    {
+      "name": "diary",
+      "version": "0.0.0+1",
+      "dependencies": [],
+      "devDependencies": []
+    }
+  ],
+  "configVersion": 1
+}
