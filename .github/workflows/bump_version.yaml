@@ -1,9 +1,8 @@
 name: Bump Version
 
-on:
-  pull_requests:
-    branches:
-      ['main']
+on: [push]
+  branches:
+    ['main']
 
 jobs:
   bump-version:
