@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: python3 ./cicd_scripts/flutter_bump_version.py minor
       - run: echo "🍏 This job's status is ${{ job.status }}."
