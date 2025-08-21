@@ -1,0 +1,15 @@
+name: Bump Version
+
+on:
+  pull_requests:
+    branches:
+      ['main']
+
+jobs:
+  bump-version:
+    runs_on: ubuntu-latest
+
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: python3 ./cicd_scripts/flutter_bump_version.py minor
+      - run: echo "🍏 This job's status is ${{ job.status }}."
