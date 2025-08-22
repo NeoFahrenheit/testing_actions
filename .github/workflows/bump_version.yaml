@@ -24,6 +24,7 @@ jobs:
             echo "Invalid bump type. FAILURE"
             exit 1
           fi
+          echo "BUMP_TYPE: $BUMP_TYPE"
           echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
 
       - name: Bump version
