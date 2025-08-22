@@ -8,9 +8,13 @@ on:
 jobs:
   bump-version:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Bump version
+        uses: actions/checkout@v4
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: python3 ./cicd_scripts/flutter_bump_version.py minor
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: git config --global user.name "github-actions"
+      - run: |
+          python3 ./cicd_scripts/flutter_bump_version.py minor
+          git add pubspect.yaml
+          git commit -m "ci: bumped version"
+          git push
