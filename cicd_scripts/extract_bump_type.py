@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+This file is responsible for extracting the bump type from a commit message.
+"""
+
 import argparse
 
 def extract(commit_message: str) -> str:
