@@ -9,14 +9,22 @@ jobs:
   bump-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Bump version
+      - name: Git setup
         uses: actions/checkout@v4
       - run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-      - run: |
-          python3 ./cicd_scripts/flutter_bump_version.py minor
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          VERSION=$(python3 ./cicd_scripts/flutter_bump_version.py minor)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Commit changes
+        run: |
           git add pubspec.yaml
           git commit -m "ci: bumped version"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git push origin main
+          git tag v${{ steps.bump_version.outputs.version }}
+          git push origin main --tags

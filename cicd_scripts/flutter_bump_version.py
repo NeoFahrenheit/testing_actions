@@ -1,4 +1,6 @@
 import argparse
+import sys
+
 from enum import Enum
 
 class VersionType(Enum):
@@ -68,6 +70,7 @@ class Version:
                 build = 1
 
         self.next_version = f"{major}.{minor}.{patch}+{build}"
+        return self.next_version
 
     def write_new_version(self) -> None:
 
@@ -83,5 +86,7 @@ if __name__ == '__main__':
 
     version_handler = Version()
     version_handler.set_bump_type(version_type)
-    version_handler.get_next_version()
+    next_version = version_handler.get_next_version()
     version_handler.write_new_version()
+
+    print(next_version)
