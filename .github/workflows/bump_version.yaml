@@ -20,7 +20,7 @@ jobs:
         run: |
           COMMIT_MSG=$(git log -1 --pretty=%B)
           echo "Commit message: $COMMIT_MSG"
-          BUMP_TYPE=$(python3 ./cicd_scripts/extract_bump_type.py "$COMMIT_MSG")
+          BUMP_TYPE=$(python3 ./cicd_scripts/extract_bump_type.py $COMMIT_MSG)
           if [ "$BUMP_TYPE" = "error" ]; then
             echo "Invalid bump type. FAILURE"
             exit 1
@@ -31,7 +31,7 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          VERSION=$(python3 ./cicd_scripts/flutter_bump_version.py minor)
+          VERSION=$(python3 ./cicd_scripts/flutter_bump_version.py $BUMP_TYPE)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Commit changes
