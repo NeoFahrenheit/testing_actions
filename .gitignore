@@ -204,3 +204,6 @@ __marimo__/
 
 # MacOS 
 .DS_Store
+
+# Dart
+.dart_tool/
