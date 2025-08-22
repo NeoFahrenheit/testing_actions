@@ -31,7 +31,7 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          VERSION=$(python3 ./cicd_scripts/flutter_bump_version.py "$BUMP_TYPE")
+          VERSION=$(python3 ./cicd_scripts/flutter_bump_version.py "${{ steps.decide_bump.outputs.bump_type }}")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Commit changes
