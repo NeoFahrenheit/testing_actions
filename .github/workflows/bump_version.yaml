@@ -11,8 +11,9 @@ jobs:
     steps:
       - name: Bump version
         uses: actions/checkout@v4
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: git config --global user.name "github-actions"
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "neofahrenheituk@gmail.com"
       - run: |
           python3 ./cicd_scripts/flutter_bump_version.py minor
           git add pubspec.yaml
